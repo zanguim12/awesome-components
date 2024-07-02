@@ -82,7 +82,7 @@ import { slideAndFadeAnimation } from '../../animations/slide-and-fade.animation
 })
 export class CommentsComponent implements OnInit {
 
-  @Input() comments!: Comment[];
+  @Input() comments: Comment[] = [];  // Initialisation avec un tableau vide
   @Output() newComment = new EventEmitter<string>();
   commentCtrl!: FormControl;
   tmpDate = new Date();
@@ -93,9 +93,11 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.commentCtrl = this.formBuilder.control('', [Validators.required, Validators.minLength(15)]);
-    this.comments.forEach((comment, index) => {
-      this.animationStates[index] = 'default';
-    });
+    if (this.comments && this.comments.length > 0) {
+      this.comments.forEach((comment, index) => {
+        this.animationStates[index] = 'default';
+      });
+    }
   }
 
   onLeaveComment(): void {

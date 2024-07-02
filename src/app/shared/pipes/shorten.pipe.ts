@@ -5,10 +5,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true
 })
 export class ShortenPipe implements PipeTransform {
-  transform(value: string, maxLength = 50): string {
-    if (value.length <= maxLength) {
-      return value;
+  transform(value: string, length: number): string {
+    if (!value || typeof value !== 'string') {
+      return '';
     }
-    return value.substring(0, maxLength) + '…';
+    if (value.length > length) {
+      return value.substr(0, length) + '...';
+    }
+    return value;
   }
 }
