@@ -36,8 +36,10 @@ export class CandidatesService {
     this.http.get<Candidate[]>(`http://localhost:3000/candidates`).pipe(
       delay(1000),
       tap(candidates => {
+        console.log(candidates);
         this.lastCandidatesLoad = Date.now();
         this._candidates$.next(candidates);
+        console.log(this._candidates$);
         this.setLoadingStatus(false);
       })
     ).subscribe();

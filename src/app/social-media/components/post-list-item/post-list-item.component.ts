@@ -38,7 +38,6 @@ export class PostListItemComponent implements OnInit {
   constructor(){}
 
   ngOnInit(): void {
-
   }
 
   OnNewComment(comment: string){

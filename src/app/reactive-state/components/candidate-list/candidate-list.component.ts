@@ -59,9 +59,10 @@ export class CandidateListComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
-    this.loading$ = this.candidatesService.loading;
     this.candidatesService.getCandidatesFromServer();
 
+    this.loading$ = this.candidatesService.loading;
+    this.candidates$ = this.candidatesService.candidates$;
   }
 
   private initForm(){
